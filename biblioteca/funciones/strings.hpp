@@ -19,8 +19,7 @@ int length(string s) {
 }
 
 int charCount(string s, char c) {
-    int i = 0;
-    int a = 0;
+    int i = 0, a = 0;
     while (s[i] != '\0') {
         if (s[i] == c) a++;
         i++;
@@ -29,25 +28,29 @@ int charCount(string s, char c) {
 }
 
 string substring(string s, int d, int h) {
-    return "";
+    int i = 0;
+    string a;
+    while (s[i] != '\0'){
+    if(i>=d && i<h) a=a+s[i]; 
+    i++;
+    }
+    return a;
 }
 
 string substring(string s, int d) // ok
 {
     int i = 0;
-    while (s[i] != '\0') {
-        if (i >= d) {
-            cout << s[i];
-        }
-        i++;
+    string a;
+    while (s[i] != '\0'){
+    if(i>=d) a=a+s[i];
+    i++;
     }
-    return "";
+    return a;
 }
 
 int indexOf(string s, char c) // ok
 {
-    int a = 0;
-    int i = 0;
+    int a = 0, i = 0;
     while (s[i] != '\0' && s[i] != c) {
         i++;
     }
@@ -74,9 +77,7 @@ int indexOf(string s, char c, int offSet) // ok
 
 int indexOf(string s, string toSearch) // ok
 {
-    int i = 0;
-    int a = 0;
-    int x = 0;
+    int i = 0, a = 0, x = 0;
     while (s[i] != '\0') {
         if (s[i] == toSearch[a]) {
             x = i - a;
@@ -84,66 +85,68 @@ int indexOf(string s, string toSearch) // ok
         }
         i++;
     }
-    if (s[i] != toSearch[a]) {
-        x = -1;
-    }
-
+    if (s[i] != toSearch[a]) x = -1;
     return x;
 }
 
 int indexOf(string s, string toSearch, int offset) // ok
 {
-
-    return 0;
+    int i = offset, a = 0, x = 0;
+    while(s[i]!='\0'){
+        if(s[i]==toSearch[a]){
+            x = i - a;
+            a++;
+        }
+        i++;
+    }
+    if (s[i] != toSearch[a]) x = -1;
+    return x;
 }
 
 int lastIndexOf(string s, char c) {
-    return 0;
-}
-
-int indexOfN(string s, char c, int n) {
-    return 0;
-}
-
-int charToInt(char c) {
-    string s = "ABCDEF";
-    int a = 0;
-    int i = 0;
-    a = c - 48;
-    while (s[i] != '\0') {
-        if (c == s[i]) {
-            a = i + 10;
-        } else { a = 0; }
+    int i=0,a=0;
+    while(s[i]!='\0'){
+        if(s[i]==c)a=i;
         i++;
     }
     return a;
 }
 
-char intToChar(int i) {
-    string s = " ABCDEF";
-    int c = 0;
-    if (i > 9) {
-        while (s[c] != '\0') {
-            s[c] = i++;
-            c++;
-        }
+int indexOfN(string s, char c, int n) {
+    int i=0,a=0;
+    while(s[i]!='\0' && n!=a){
+        if(s[i]==c)a++;
+        i++;
     }
-    return i + 48;
+    return i-1;
+}
+
+int charToInt(char c) { 
+    int i;
+    if(c>=48 && c<=57)i=c-48;
+    if(c>=65 && c<=90)i=c-55;
+    return i;
+}
+
+char intToChar(int i) {
+    char c;
+    if(i>=0 && i<=9)c=i+48;
+    if(i>=10 && i<=35)c=i+55;
+    return c;
 }
 
 int getDigit(int n, int i) {
-    string s = std::to_string(n);
-    int x;
-    int c = 0;
+    string s = to_string(n);
+    int res,c = 0;
     while (s[c] != '\0') {
         c++;
     }
-    x = c - i;
-    return x;
+    res = c - i;
+    return res;
 }
 
 int digitCount(int n) {
-    string s = std::to_string(n);
+    string s = to_string(n);
     int c = 0;
     while (s[c] != '\0') {
         c++;
@@ -152,20 +155,20 @@ int digitCount(int n) {
 }
 
 string intToString(int i) {
-    string s = std::to_string(i);
-    return s;
+    return to_string(i);
 }
 
 int stringToInt(string s, int b) // ok
 {
     int x = stoi(s);
-    int a;
-    int resultado;
+    int i=0,c=0,res=0;
+    /*string r;
+    string e = "ABCDEF";
     if (b == 10) {
         a = x;
     }
     if (b == 2) {
-        int resto = 0;
+        int resultado, resto = 0;
         int digito[8];
         {
             for (int i = 0; i < 8; i++) {
@@ -177,8 +180,41 @@ int stringToInt(string s, int b) // ok
                 resto = resultado;
             }
         }
+        return resultado;
     }
-    return resultado;
+     while(s[i]!='\0')
+     {
+      r[i]=(s[i]^i);
+      cout<<r[i]<<endl;
+      f = stoi(r) +f;
+      i++;
+     }
+
+     a=f;
+  }
+
+    if (b == 16) {
+
+        return a;
+    }
+    */
+    if(b==2){
+        while(s[i]!='\0'){
+            if(s[i]=='1')res+=2^i;
+            i++;
+        }
+    }
+    if(b==10){
+        res=b;       
+    }
+    if(b==16){
+        i=0;
+        while(s[i]!='\0'){
+        res+=charToInt(s[i]);
+        i++;
+        }
+    }
+  return res;  
 }
 
 int stringToInt(string s) // ok
@@ -199,7 +235,7 @@ char stringToChar(string s) {
 }
 
 string stringToString(string s) {
-    return s;
+    return "";
 }
 
 string doubleToString(double d) {
@@ -232,16 +268,26 @@ bool startsWith(string s, string x) {
 }
 
 bool endsWith(string s, string x) {
-    return s==x?1:0;
+    int i, c, a, b;
+    while (s[i] != '\0') {
+        a = s[i];
+        b = x[c];
+        if (a == b) c++;
+        i++;
+    }
+    if (c >= 2) return true;
+    if (c <= 2) return false;
 }
 
 bool contains(string s, char c) {
     int i;
     int a;
-    while (s[i]!='\0') {
-        s[i]==c?a++:i++;
+    while (s[i] != '\0') {
+        if (s[i] == c) a++;
+        i++;
     }
-    return a==0?0:1;
+    if (a == 0) return false;
+    if (a != 0) return true;
 }
 
 string replace(string s, char oldChar, char newChar) {
@@ -314,10 +360,8 @@ bool isUpperCase(char c) {
 
 bool isLowerCase(char c) {
     int i = c;
-    bool x;
-    if (c >= 97 && c <= 122){x=1;}
-    if (c >= 65 && c <= 90){x=0;} 
-    return x;
+    if (i >= 97 && i <= 122) return true;
+    if (i >= 65 && i <= 90) return false;
 }
 
 char toUpperCase(char c) {

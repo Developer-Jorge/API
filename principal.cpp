@@ -16,21 +16,16 @@
 using namespace std;
 
 int main() {
-    Coll<string> c = coll<string>();
-    collAdd<string>(c,"John",stringToString);
-    collAdd<string>(c,"Paul",stringToString);
-    collAdd<string>(c,"George",stringToString);
-    collAdd<string>(c,"Ringo",stringToString);
-    collReset<string>(c);
-    bool endOfColl;
-    string s = collNext<string>(c,endOfColl,stringToString);
-    while( !endOfColl )
-    {
-        cout << s << endl;
-        s = collNext<string>(c,endOfColl,stringToString);
-    }
+string s = "10";
+int i = stringToInt(s,10);
+cout << i << endl; // muestra: 10
+i = stringToInt(s,2);
+cout << i << endl; // muestra: 2
+i = stringToInt(s,16);
+cout << i << endl; // muestra: 16
+s = "12AB";
+i = stringToInt(s,16);
+cout << i << endl; // muestra: 4779
 }
-
-
 #endif
 
