@@ -16,21 +16,11 @@
 using namespace std;
 
 int main() {
-    Coll<string> c = coll<string>();
-    collAdd<string>(c,"John",stringToString);
-    collAdd<string>(c,"Paul",stringToString);
-    collAdd<string>(c,"George",stringToString);
-    collAdd<string>(c,"Ringo",stringToString);
-    collReset<string>(c);
-    bool endOfColl;
-    string s = collNext<string>(c,endOfColl,stringToString);
-    while( !endOfColl )
-    {
-        cout << s << endl;
-        s = collNext<string>(c,endOfColl,stringToString);
-    }
+string s = "Esta funcion es la funcion mas dificil";
+int p = lastIndexOf(s,'i');
+cout << p << endl; // muestra:
+p = lastIndexOf(s,'l');
+cout << p << endl; // muestra:
 }
-
-
 #endif
 
