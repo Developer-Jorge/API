@@ -11,6 +11,9 @@ struct Coll
 {
    string s;
    char sep;
+   void tToString(string c){
+      c<int>=intToString(c)
+   } 
 };
 
 template<typename T>
@@ -30,7 +33,8 @@ Coll<T> coll()
 template<typename T>
 int collSize(Coll<T> c)
 {
-   return 0;
+   int i = (length(c),tToString(c));
+   return i;
 }
 
 template<typename T>

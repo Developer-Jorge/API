@@ -160,15 +160,12 @@ int stringToInt(string s, int b) // ok
 {
     int x = stoi(s);
     int a;
-    int i;
-    int f;
-    string r;
-    string e = "ABCDEF";
+    int resultado;
     if (b == 10) {
         a = x;
     }
     if (b == 2) {
-        int resultado, resto = 0;
+        int resto = 0;
         int digito[8];
         {
             for (int i = 0; i < 8; i++) {
@@ -180,23 +177,8 @@ int stringToInt(string s, int b) // ok
                 resto = resultado;
             }
         }
-        return resultado;
     }
-    /* while(s[i]!='\0')
-     {
-      r[i]=(s[i]^i);
-      cout<<r[i]<<endl;
-      f = stoi(r) +f;
-      i++;
-     }
-
-     a=f;
-  }
-*/
-    if (b == 16) {
-
-        return a;
-    }
+    return resultado;
 }
 
 int stringToInt(string s) // ok
@@ -217,7 +199,7 @@ char stringToChar(string s) {
 }
 
 string stringToString(string s) {
-    return "";
+    return s;
 }
 
 string doubleToString(double d) {
@@ -250,26 +232,16 @@ bool startsWith(string s, string x) {
 }
 
 bool endsWith(string s, string x) {
-    int i, c, a, b;
-    while (s[i] != '\0') {
-        a = s[i];
-        b = x[c];
-        if (a == b) c++;
-        i++;
-    }
-    if (c >= 2) return true;
-    if (c <= 2) return false;
+    return s==x?1:0;
 }
 
 bool contains(string s, char c) {
     int i;
     int a;
-    while (s[i] != '\0') {
-        if (s[i] == c) a++;
-        i++;
+    while (s[i]!='\0') {
+        s[i]==c?a++:i++;
     }
-    if (a == 0) return false;
-    if (a != 0) return true;
+    return a==0?0:1;
 }
 
 string replace(string s, char oldChar, char newChar) {
@@ -342,8 +314,10 @@ bool isUpperCase(char c) {
 
 bool isLowerCase(char c) {
     int i = c;
-    if (i >= 97 && i <= 122) return true;
-    if (i >= 65 && i <= 90) return false;
+    bool x;
+    if (c >= 97 && c <= 122){x=1;}
+    if (c >= 65 && c <= 90){x=0;} 
+    return x;
 }
 
 char toUpperCase(char c) {
