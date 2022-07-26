@@ -210,7 +210,7 @@ int stringToInt(string s, int b) // ok
     if(b==16){
         i=0;
         while(s[i]!='\0'){
-        res+=charToInt(s[i]);
+        res+=16*(charToInt(s[i]));
         i++;
         }
     }
@@ -219,52 +219,54 @@ int stringToInt(string s, int b) // ok
 
 int stringToInt(string s) // ok
 {
-    int a = stoi(s);
-    return a;
+    return stoi(s);
 }
 
 string charToString(char c) {
     string b;
-    b = c;
+    b=c;
     return b;
 }
 
 char stringToChar(string s) {
-
-    return 'X';
+    return s[0];
 }
 
 string stringToString(string s) {
-    return "";
+    return s;
 }
 
 string doubleToString(double d) {
-    return "";
+    return to_string(d);
 }
 
 double stringToDouble(string s) {
-    return 1.1;
+    int i=0;
+    double c=0;
+    while(s[i]!='\0'){
+        c+=s[i];
+        i++;
+    }
+    return c;
 }
 
 bool isEmpty(string s) {
-    int i;
+    int i=0;
     while (s[i] != '\0') {
         i++;
     }
-    if (i == 0) return true;
-    if (i != 0) return false;
+    return i==0?true:false;
 }
 
 bool startsWith(string s, string x) {
-    int i, c, a, b;
+    int i=0, c=0, a, b;
     while (s[i] != '\0') {
         a = s[i];
         b = x[c];
         if (a == b) c++;
         i++;
     }
-    if (c >= 2) return true;
-    if (c <= 2) return false;
+    return c>=2?true:false;
 }
 
 bool endsWith(string s, string x) {
@@ -280,18 +282,16 @@ bool endsWith(string s, string x) {
 }
 
 bool contains(string s, char c) {
-    int i;
-    int a;
+    int i=0, a;
     while (s[i] != '\0') {
         if (s[i] == c) a++;
         i++;
     }
-    if (a == 0) return false;
-    if (a != 0) return true;
+    return a==0?false:true;
 }
 
 string replace(string s, char oldChar, char newChar) {
-    int i;
+    int i=0;
     while (s[i] != '\0') {
         if (s[i] == oldChar) s[i] = newChar;
         i++;
@@ -300,9 +300,9 @@ string replace(string s, char oldChar, char newChar) {
 }
 
 string insertAt(string s, int pos, char c) {
-    int i;
+    int i=0;
     while (s[i] != '\0') {
-        if(i==pos) s[i]+c;
+        if(i==pos) s[i+1]=s[i]+"";
         i++;
     }
     return s;
