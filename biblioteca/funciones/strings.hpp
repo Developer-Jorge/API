@@ -299,25 +299,59 @@ string replace(string s, char oldChar, char newChar) {
     return s;
 }
 
-string insertAt(string s, int pos, char c) {
+string insertAt(string s, int pos, char c){
     int i=0;
-    while (s[i] != '\0') {
-        if(i==pos) s[i+1]=s[i]+"";
+    string before, afther;;
+    while (i != pos) {
+        before+=s[i];       
         i++;
     }
-    return s;
+    while(s[i] != '\0'){
+        afther+=s[i];
+        i++;
+    }
+    return s=before+c+afther;
 }
 
 string removeAt(string s, int pos) {
-    return "";
+    int i=0;
+    string before, afther;
+    while (i != pos) {
+        before+=s[i];       
+        i++;
+    }
+        while(s[i] != '\0'){
+        afther+=s[i+1];
+        i++;
+    }
+    return s=before+afther;
 }
-
 string ltrim(string s) {
-    return "";
+    int i=0;
+    string res;
+    while(s[i]==32){
+        res=s[i+1];
+        i++;
+    }
+        while(s[i] != '\0'){
+        res=s[i+1];
+        i++;
+    }
+    return res;
 }
 
 string rtrim(string s) {
-    return "";
+    int i=0;
+    string res;
+    while(s[i]!= '\0'){
+        res+=s[i];
+        i++;
+    }
+        while(s[i-1]==32){
+        s[i]=s[i-1];
+        i--;
+    }
+    return res;
 }
 
 string trim(string s) {
