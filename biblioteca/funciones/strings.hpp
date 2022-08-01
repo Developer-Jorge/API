@@ -259,18 +259,19 @@ bool isEmpty(string s) {
 }
 
 bool startsWith(string s, string x) {
-    int i=0, c=0, a, b;
+/*    int i=0, c=0, a, b;
     while (s[i] != '\0') {
         a = s[i];
         b = x[c];
         if (a == b) c++;
         i++;
     }
-    return c>=2?true:false;
+    return c>=2?true:false;*/
+    return "";
 }
 
 bool endsWith(string s, string x) {
-    int i, c, a, b;
+  /* int i, c, a, b;
     while (s[i] != '\0') {
         a = s[i];
         b = x[c];
@@ -278,7 +279,8 @@ bool endsWith(string s, string x) {
         i++;
     }
     if (c >= 2) return true;
-    if (c <= 2) return false;
+    if (c <= 2) return false;*/
+    return "";
 }
 
 bool contains(string s, char c) {
@@ -330,11 +332,10 @@ string ltrim(string s) {
     int i=0;
     string res;
     while(s[i]==32){
-        res=s[i+1];
         i++;
     }
         while(s[i] != '\0'){
-        res=s[i+1];
+        res+=s[i];
         i++;
     }
     return res;
@@ -342,126 +343,134 @@ string ltrim(string s) {
 
 string rtrim(string s) {
     int i=0;
+    i=length(s);
+    i--;
+        while(s[i]==32){
+            s=removeAt(s,i);
+            i--;
+    }
+    return s;
+}
+
+string trim(string s) {
+/*  int i=0;
     string res;
-    while(s[i]!= '\0'){
-        res+=s[i];
+        while(s[i]==32){
+        s=removeAt(s,i);
         i++;
     }
-        while(s[i-1]==32){
-        s[i]=s[i-1];
+        while(s[i] != '\0'){
+        s=s[i];
+        i++;
+    }
+    i=length(s);
+    i--;
+    while(s[i]==32){
+        s=removeAt(s,i);
         i--;
+    }*/
+    string x=ltrim(s);
+    string y=rtrim(s);
+    cout<<x<<y;
+    return s=ltrim(s)+rtrim(s);
+}
+
+string replicate(char c, int n) {
+    string res;
+    for(int i=0;i<=n;i++){
+        res+=c;
     }
     return res;
 }
 
-string trim(string s) {
-    return "";
-}
-
-string replicate(char c, int n) {
-    return "";
-}
-
 string spaces(int n) {
-    return "";
+    string res;
+    for(int i=0;i<=n;i++){
+        res+=32;
+    }
+    return res;
 }
 
 string lpad(string s, int n, char c) {
-    return "";
+    int i=0;
+    while(length(s)<=n){
+        s=replicate(c,n-length(s))+s;
+        i++;
+    }
+    return s;
 }
 
 string rpad(string s, int n, char c) {
-    return "";
+    int i=0;
+    while(length(s)<=n){
+    s+=replicate(c,n-length(s));
+    }
+    return s;
 }
 
 string cpad(string s, int n, char c) {
-    return "";
+    int i=0;
+    int res=(n-length(s))/2;
+    while(length(s)<=res){
+    s=replicate(c,n-length(s))+s;
+    i++;
+    }
+    while(length(s)<=n){
+    s+=replicate(c,n-length(s));
+    }
+    return s;
 }
 
 bool isDigit(char c) {
-    return true;
+    return c>=48&&c<=57?true:false;
 }
 
 bool isLetter(char c) {
-    return true;
+    return (c>=65&&c<=90)||(c>=97&&c<=122)?true:false;
 }
 
 bool isUpperCase(char c) {
-    int i = c;
-    if (i >= 97 && i <= 122) return false;
-    if (i >= 65 && i <= 90) return true;
+    return (c >= 65 && c <= 90)?true:false;
 }
 
 bool isLowerCase(char c) {
-    int i = c;
-    if (i >= 97 && i <= 122) return true;
-    if (i >= 65 && i <= 90) return false;
+    return (c >= 97 && c <= 122)?true:false;
 }
 
 char toUpperCase(char c) {
-    char a;
-    int i = c;
-    if (i >= 97 && i <= 122) {
-        a = i - 32;
-    }
-    if (i >= 65 && i <= 90) {
-        a = c;
-    }
-    if (i >= 48 && i <= 57) {
-        a = i;
-    }
-    return a;
+    return c >= 97 && c <= 122?c-32:c;
 }
 
 char toLowerCase(char c) {
-    char a;
-    int i = c;
-    if (i >= 97 && i <= 122) {
-        a = i - 32;
-    }
-    if (i >= 65 && i <= 90) {
-        a = c;
-    }
-    if (i >= 48 && i <= 57) {
-        a = i;
-    }
-    return a;
+    return c >= 65 && c <= 90?c+32:c;
 }
 
 string toUpperCase(string s) {
-    return "";
+    int i=0;
+    string res;
+    while(s[i]!='\0'){
+    res+=toUpperCase(s[i]);
+    i++;
+    }
+    return res;
 }
 
 string toLowerCase(string s) {
-    string b;
-    int i;
-    while (s[i] != '\0') {
-        b[i] = s[i] + 32;
-        i++;
+    int i=0;
+    string res;
+    while(s[i]!='\0'){
+    res+=toLowerCase(s[i]);
+    i++;
     }
-    return b;
+    return res;
 }
 
 int cmpString(string a, string b) {
-    int i, c, d, x, f, g;
-    f = a[i];
-    g = b[i];
-    while (a[i] != '\0' && b[i] != '\0') {
-        if (f > g) c++;
-        if (g > f) d++;
-        i++;
-    }
-    if (c > d) x = 1;
-    if (c < d) x = -1;
-    return x;
+    return a==b?0:a>b?1:-1;
 }
 
 int cmpDouble(double a, double b) {
-    int x;
-    if (a > b) x = 1;
-    if (a < b) x = -1;
-    if (a == b) x = 0;
-    return x;
+    return a==b?0:a>b?1:-1;
 }
 
 #endif

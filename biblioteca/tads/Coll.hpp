@@ -30,7 +30,7 @@ Coll<T> coll()
 template<typename T>
 int collSize(Coll<T> c)
 {
-   return 0;
+   return tokenCount(c,coll());
 }
 
 template<typename T>
