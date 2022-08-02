@@ -41,10 +41,10 @@ int main(){
 
 // string s = "John|Paul|George|Ringo";
 // char sep = '|';
-// int i = 1;
+// int i = 0;
 // removeTokenAt(s,sep,i);
 // cout << s << endl; // Salida: John|Paul|Ringo
-// i = 0;
+// i = 3;
 // removeTokenAt(s,sep,i);
 // cout << s << endl; // Salida: Paul|Ringo
 
