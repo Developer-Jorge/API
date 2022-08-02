@@ -10,7 +10,8 @@ template<typename T> void write(FILE* f, T t)
    // De otro modo, apareceran errores al momento de actualizar
    // archivos. Esto se debe a un error en la implementacion de Windows.
    //
-   // fseek(f,0,SEEK_CUR);
+   //fseek(f,0,SEEK_CUR);
+   fwrite(&t,sizeof(T),1,f);
 }
 
 template<typename T> T read(FILE* f)
@@ -19,14 +20,15 @@ template<typename T> T read(FILE* f)
    // De otro modo, apareceran errores al momento de actualizar
    // archivos. Esto se debe a un error en la implementacion de Windows.
    //
-   // fseek(f,0,SEEK_CUR);
-
+   // fseek(f,0,SEEK_CUR);  
    T t;
+   fread(&t,sizeof(T),1,f);
    return t;
 }
 
 template<typename T> void seek(FILE* f, int n)
 {
+   fseek(f,n,SEEK_SET);
 }
 
 template<typename T> int fileSize(FILE* f)
